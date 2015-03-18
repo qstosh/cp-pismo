@@ -1,0 +1,101 @@
+.Zaginanie {
+
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-bg;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  overflow: hidden;
+  overflow-y: auto;
+
+  .wrapper {
+
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 0 auto;
+    align-content: flex-start;
+
+    .content {
+
+      order: 1;
+      flex: 1 100%;
+
+      @include media(desktop) {
+
+        flex: 3 0px;
+        order: 2;
+      }
+    }
+
+    .sidebar {
+
+      padding: 3rem 1rem;
+      flex-flow: column nowrap;
+      flex: 0 250px;
+
+      @include media(desktop-small) {
+
+        flex: 0 50%;
+      }
+
+      @include media(desktop-tiny) {
+
+        flex: 0 100%;
+      }
+
+
+      &--left {
+
+        order: 1;
+
+        @include media(desktop-small) {
+
+          order: 3;
+        }
+
+        @include media(desktop-tiny) {
+
+          order: 3;
+        }
+      }
+
+      &--right {
+
+        order: 3;
+
+        @include media(desktop-small) {
+
+          order: 2;
+        }
+
+        @include media(desktop-tiny) {
+
+          order: 2;
+        }
+      }
+    }
+  }
+
+  .footer {
+
+    padding: 25px;
+
+    &, .clients {
+      flex: none;
+      text-align: center;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    .label {
+
+        line-height: $size-avatar;
+    }
+  }
+}

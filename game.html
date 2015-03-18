@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="App">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Pisanie</title>
+    <style>
+      /* html { background-color: black; } */
+
+      body::before {
+        background: hsla(0, 100%, 40%, 0.8);
+        display: block;
+        padding: 20px;
+        font-weight: bold;
+        font-size: 1.618rem;
+      }
+    }
+    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/fabric.min.js"></script>
+    <script type="text/javascript" src="js/cp.js"></script>
+
+  </head>
+
+  <body ng-controller="AppCtrl" ng-class="ToggleNav ? 'nav-opened' : ''" class="game-container" ng-init="ToggleGame = false" id="container" >
+  <!-- Gra zaginanie -->
+  <div class="Zaginanie">
+    <div class="wrapper">
+      <aside class="sidebar sidebar--left">
+        <!-- <button ng-click="ToggleGame = !ToggleGame">Toggle</button> -->
+        <img src="images/avatars/1.png" alt="" class="avatar avatar--sidebar player-avatar">
+        <section class="feed-wrapper">
+          <label for="feed" class="feed__button icon-notifications"></label>
+          <label for="feed" class="feed__bg-overlay animate-if" ng-if="addRemoveClassSwitch" ng-model="addRemoveClassSwitch"></label>
+          <input id="feed" type="checkbox" ng-model="addRemoveClassSwitch" class="u-hide" />
+          <figure class="feed__list" ng-class="addRemoveClassSwitch ? 'feed__list--active' : ''">
+            <div class="feed__list__wrapper">
+              <div class="feed__list__item" data-status="narysował obrazek">
+                <img src="images/avatars/1.png" alt="" class="avatar">
+              </div>
+              <div class="feed__list__item" data-status="załączył opis">
+                <img src="images/avatars/2.png" alt="" class="avatar">
+              </div>
+              <div class="feed__list__item" data-status="narysował obrazek">
+                <img src="images/avatars/3.png" alt="" class="avatar">
+              </div>
+              <div class="feed__list__item" data-status="załączył opis">
+                <img src="images/avatars/1.png" alt="" class="avatar">
+              </div>
+              <div class="feed__list__item" data-status="narysował obrazek">
+                <img src="images/avatars/2.png" alt="" class="avatar">
+              </div>
+              <div class="feed__list__item" data-status="załączył opis">
+                <img src="images/avatars/3.png" alt="" class="avatar">
+              </div>
+            </div>
+          </figure>
+        </section>
+        <div class="instructions u-hide">
+          <label for="instructions" class="feed__button icon-instructions"></label>
+          <input id="instructions" type="checkbox" ng-model="addRemoveClassSwitch" class="u-hide" />
+        </div>
+      </aside>
+      <main class="content welcome-screen">
+        <div class="welcome-screen__name"></div>
+      </main>
+      <main class="content sketch-screen">
+        <div class="content__previous">
+          <div class="content__previous__wrapper">
+            <div class="screen-container">
+              <div class="sketch-screen">
+                <h1 class="word"></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <canvas class="sketch-board" width="500" height="500"></canvas>
+      </main>
+      <main class="content write-screen">
+        <div class="content__previous">
+          <div class="content__previous__wrapper">
+            <img class="sketch-image">
+          </div>
+        </div>
+        <input type="text">
+      </main>
+      <main class="content results-screen">
+        <div class="results"></div>
+      </main>
+      <aside class="sidebar sidebar--right welcome-screen">
+        <button class="button icon ready-btn u-color-bg-green">Jestem gotowy</button>
+      </aside>
+      <aside class="sidebar sidebar--right sketch-screen">
+        <div class="tools">
+          <div class="wrap" data-title="wybierz grubość">
+            <button class="set-drawing-line-width set-drawing-line-width--1 u-color-bg-black" data-width="1"></button>
+            <button class="set-drawing-line-width set-drawing-line-width--2 u-color-bg-black" data-width="5"></button>
+            <button class="set-drawing-line-width set-drawing-line-width--3 u-color-bg-black" data-width="15"></button>
+          </div>
+
+          <div class="wrap" data-title="wybierz kolor">
+            <button class="set-drawing-line-color u-color-bg-black czarny" data-color="#000"></button>
+            <button class="set-drawing-line-color u-color-bg-red czerwony" data-color="#FF4136"></button>
+            <button class="set-drawing-line-color u-color-bg-green zielony" data-color="#2ECC40"></button>
+            <button class="set-drawing-line-color u-color-bg-blue niebieski" data-color="#0074D9"></button>
+          </div>
+
+          <button class="button icon clear-canvas">Wyczyść obrazek</button>
+
+          <button class="button icon complete-btn">Przekaż dalej</button>
+        </div>
+      </aside>
+      <aside class="sidebar sidebar--right write-screen">
+        <button class="button icon complete-btn u-color-bg-green">Przekaż dalej</button>
+      </aside>
+      <aside class="sidebar sidebar--right results-screen">
+        <button class="button icon restart-btn">Zagraj ponownie</button>
+      </aside>
+    </div>
+    <footer class="footer">
+      <div class="label">Uczestnicy</div>
+      <div class="clients"></div>
+    </footer>
+    <div class="modal-waiting u-hide wait-message">
+      <div class="modal-waiting__text">Trwa oczekiwanie na pozostałych uczniów</div>
+    </div>
+  </div>
+  <!-- |||||||||||||||||||||||||||||| -->
+
+  <!-- Vendor Scripts -->
+  <script src="js/modernizr.custom.53533.js"></script>
+  <script src="js/min/angular.min.js"></script>
+  <script src="js/min/angular-scroll.min.js"></script>
+  <script src="js/min/wow.min.js"></script>
+  <!-- Angular App -->
+  <script src="js/min/app.min.js"></script>
+  <!-- Initialize Scripts -->
+  <script type="text/javascript">
+    var game = new CpGameSketch($('.game-container'), 'ws://t1.contentplus.pl/');
+    game.init();
+    var wow = new WOW({
+      boxClass: 'wow', // animated element css class (default is wow)
+      animateClass: 'animated', // animation css class (default is animated)
+      offset: 0, // distance to the element when triggering the animation (default is 0)
+      mobile: true, // trigger animations on mobile devices (default is true)
+      live: true, // act on asynchronously loaded content (default is true)
+      callback: function(box) {
+        // the callback is fired every time an animation is started
+        // the argument that is passed in is the DOM node being animated
+      }
+    });
+    wow.init();
+  </script>
+
+  </body>
+</html>

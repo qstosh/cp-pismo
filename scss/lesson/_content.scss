@@ -1,0 +1,237 @@
+.Main-container {
+
+  &__section {
+
+    position: relative;
+    height: 100vh;
+    @extend %flex-container-column;
+
+    @include media(desktop-height-1) {
+
+      min-height: 700px;
+    }
+
+    &__scroll-to-next-section,
+    &__scroll-to-previous-section {
+
+      position: absolute;
+      @include size(5rem, 5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: hidden;
+
+      .arrow-next {
+
+        position: absolute;
+        @include square(30px);
+        transform: translate(-50%, -50%);
+        top: 65px;
+        left: 50%;
+
+        will-change: transform;
+        transition: background .2s ease;
+      }
+
+      &:after {
+
+        content: "";
+        position: absolute;
+        @include circle(100%);
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background: rgba(0,0,0,0.2);
+        z-index: -1;
+      }
+
+      &:hover {
+
+        &:after {
+
+          background: rgba(0,0,0,0.5);
+        }
+
+        .arrow-next {
+
+          stroke: white;
+          animation: pulsing;
+          animation-duration: .5s;
+          animation-delay: .45s;
+          animation-timing-function: ease-in-out;
+          animation-fill-mode: both;
+          animation-iteration-count: infinite;
+        }
+      }
+    }
+
+    &__scroll-to-previous-section {
+
+      top: 40px;
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+
+    &__scroll-to-next-section {
+
+      bottom: 0;
+    }
+  }
+}
+
+.section {
+
+  &__flex-item {
+
+    flex: 1 auto;
+    align-self: stretch;
+  }
+}
+
+.section--2 {
+
+  &__svg-wrapper {
+
+    position: absolute;
+    @include square(100%);
+    top: 0;
+
+    overflow: hidden;
+    background: white;
+
+    backface-visibility: hidden;
+
+    .test {
+
+      height: 4rem;
+      line-height: 4rem;
+      @include center;
+      font-size: 3rem;
+      padding: 0 2rem;
+      background-color: rgba(0,0,0,.5);
+      color: white;
+      border-radius: 5px;
+    }
+
+    .svg-intro {
+
+      // width: 100%;
+      // height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      will-change: transform;
+      transition: transform 1s ease;
+
+      transform-origin: center center;
+      transform: translate(-50%, -100%) scale(0.3);
+
+      [id*="actor"] path {
+
+        will-change: opacity, transform;
+        transform-origin: center center;
+        transition: opacity .1s ease-in 1.8s, transform .3s ease-in-out 1.8s;
+        opacity: 1;
+        transform: rotateY(90deg);
+      }
+
+      &--state-1 {
+
+        transform: translate(-50%, -50%) scale(0.3);
+
+        [id*="actor"] path {
+
+          transform: rotateY(0deg);
+        }
+      }
+
+      &--state-2 {
+
+        transform: translate(-1220px, 0) scale(1);
+        transition: transform 1s ease-out;
+
+        [id*="actor"] path {
+
+          transform: rotateY(0deg);
+        }
+
+        [id="actor-1"] path,
+        [id="actor-3"] path,
+        [id="actor-5"] path,
+        [id="actor-6"] path {
+
+          transform: rotateY(90deg);
+        }
+      }
+
+      &--state-3 {
+
+        transform: translate(-50%, 100%) scale(0.3);
+        transition: transform 1.3s ease-in;
+      }
+    }
+  }
+}
+
+.section--4 .u-flex-container--row {
+
+  @extend %flex-container-row-nowrap;
+
+  .owca,
+  .lines,
+  .equals {
+
+    margin-right: 3rem;
+  }
+
+  .owca {
+
+    width: 140px;
+  }
+
+  .lines {
+
+    flex: none;
+
+    &__line {
+
+      @include size(3px, 100px);
+      background: #000;
+      display: inline-block;
+
+      &:not(:last-child) {
+
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .equals {
+
+    &__line {
+
+      @include size(100px, 2px);
+      background: #000;
+      display: block;
+
+      &:first-child {
+
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .sheeps {
+
+    flex: none;
+
+    &__sheep {
+
+      width: 100px;
+
+      &:not(last-child) {
+
+        margin-right: 1rem;
+      }
+    }
+  }
+}

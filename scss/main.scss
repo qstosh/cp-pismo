@@ -1,0 +1,27 @@
+// modules
+@import "modules/normalize";            /* reset */
+@import "modules/_variables.scss";            /* colors, sizes */
+@import "modules/functions";            /* media queries, mixins, placeholders */
+
+@import "modules/skins";                /* colors */
+@import "modules/icons";
+@import "modules/animate";              /* required by wow.js */
+@import "modules/modernizr-fallback";
+
+@import "modules/debug";                /* preview layout */
+
+@import "modules/global";               /* project specific reset and base styles */
+
+
+// partials
+@import "lesson/nav";
+@import "lesson/content";
+
+@import "game/layout";
+@import "game/sidebar--left";
+@import "game/content";
+@import "game/sidebar--right";
+@import "game/footer";
+
+@import "modules/helpers";              /* helper classes */
+ 

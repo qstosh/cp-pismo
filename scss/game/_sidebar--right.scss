@@ -1,0 +1,99 @@
+.sidebar--right {
+
+  .button {
+
+    width: 100%;
+    height: $size-button;
+    margin-top: 2rem;
+
+    font-weight: bold;
+    border: 1px solid $color-black;
+    @include border-radius;
+
+    will-change: opacity;
+  }
+
+  .tools {
+
+    text-align: center;
+
+    .wrap {
+
+      position: relative;
+      padding-top: 2rem;
+      margin-bottom: 1rem;
+
+      &:after {
+
+        content: attr(data-title);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    button.set-drawing-line-width,
+    button.set-drawing-line-color {
+
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border-radius: 50%;
+      margin: 4px;
+    }
+
+    button.set-drawing-line-width,
+    button.set-drawing-line-color {
+
+      position: relative;
+      opacity: 0.7;
+      transition: opacity .2s ease;
+
+      will-change: opacity;
+
+      &:hover {
+
+        opacity: 1;
+      }
+
+      &:focus {
+
+        outline: none;
+      }
+
+      &.active:after {
+
+        content: "";
+        position: absolute;
+        display: block;
+        @include size(3px, 3px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: white;
+      }
+    }
+
+    button.set-drawing-line-width {
+
+      padding: 0;
+
+      &--1 {
+
+        @include size(8px, 8px);
+      }
+
+      &--2 {
+
+        @include size(12px, 12px);
+      }
+
+      &--3 {
+
+        @include size(16px, 16px);
+      }
+    }
+  }
+}

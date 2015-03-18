@@ -1,0 +1,200 @@
+// nav opening animation
+body {
+
+  .Nav {
+
+    will-change: transform;
+    transition-property: transform;
+    transition-timing-function: $transition-timing-default;
+    transition-duration: $transition-duration-default;
+    transform: translateX(0);
+
+  }
+
+  &.nav-opened .Nav {
+
+    transform: translateX(-$size-nav);
+  }
+}
+
+.hamburger {
+
+  position: fixed;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+
+  padding: 5px;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+
+  &:hover {
+
+    will-change: background;
+    transition: background .35s ease;
+    background-color: $color-white;
+  }
+
+  cursor: pointer;
+
+  z-index: 3;
+
+  &__bar {
+
+    display: flex;
+    flex: 0 2px;
+    width: 1rem * 1.5;
+    background: $color-black;
+
+    will-change: transform;
+
+    animation-duration: .5s;
+    animation-delay: .45s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+
+    &:not(:last-child) {
+
+      margin-bottom: 4px;
+    }
+
+    &:nth-child(1) {
+
+      animation-name: hamburgerN1;
+    }
+
+    &:nth-child(2) {
+
+      animation-name: hamburgerN2;
+    }
+
+    &:nth-child(3) {
+
+      animation-name: hamburgerN3;
+    }
+
+    &:nth-child(4) {
+
+      animation-name: hamburgerN4;
+    }
+  }
+
+  &--close {
+
+    span {
+
+      &:nth-child(1) {
+
+        animation-name: hamburgerCloseN1;
+      }
+
+      &:nth-child(2) {
+
+        animation-name: hamburgerCloseN2;
+      }
+
+      &:nth-child(3) {
+
+        animation-name: hamburgerCloseN3;
+      }
+
+      &:nth-child(4) {
+
+        animation-name: hamburgerCloseN4;
+      }
+    }
+  }
+}
+
+.Nav {
+
+  position: fixed;
+  @include size($size-nav, 100%);
+  top: 0;
+  right: -$size-nav;
+  bottom: 0;
+  padding: 4rem 2rem 2rem 2rem;
+
+  background-color: rgba(255,255,255,0.75);
+
+  z-index: 2;
+
+  &__header {
+
+    font-size: 1.3rem;
+    font-weight: normal;
+    cursor: pointer;
+
+    &:first-child {
+
+      margin-top: 0;
+    }
+  }
+
+  &__section {
+
+    &__item {
+
+      a {
+
+        display: inline-block;
+        position: relative;
+        user-select: none;
+        font-weight: 200;
+
+        &:after {
+
+          content: "";
+          position: absolute;
+          display: block;
+          @include size(100%, 2px);
+          background: black;
+          bottom: -2px;
+          left: 0;
+
+          will-change: opacity;
+          transition: opacity .2s ease;
+
+          opacity: 0;
+        }
+
+        &.active:after {
+
+          opacity: 1;
+        }
+      }
+
+      &:not(:last-child) {
+
+        margin-bottom: 1rem;
+      }
+    }
+
+    &--opened {
+
+      height: auto;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+.overlay {
+
+  @include full-size-fixed;
+
+  visibility: hidden;
+  background: black;
+  opacity: 0;
+  cursor: url(../images/cursor-close.svg), auto;
+
+  will-change: opacity;
+
+  z-index: 1;
+
+  &--active {
+
+    visibility: visible;
+    opacity: .3;
+  }
+}

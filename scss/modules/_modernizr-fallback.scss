@@ -1,0 +1,33 @@
+// no-flexbox
+.no-flexbox {
+
+  &__info {
+
+    position: absolute;
+    display: block;
+    @include size(300px, 100px);
+
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -150px;
+
+    text-align: center;
+
+    background: #cf0000;
+  }
+
+  .wrapper,
+  .footer {
+
+    display: none;
+  }
+}
+
+html.flexbox {
+
+  .no-flexbox__info {
+
+    display: none;
+  }
+}

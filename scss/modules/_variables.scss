@@ -1,0 +1,54 @@
+// Colors
+
+// taken from https://github.com/mrmrs/colors/
+// cool
+$color-aqua:  #7FDBFF;
+$color-blue:  #0074D9;
+$color-navy:  #001F3F;
+$color-teal:  #39CCCC;
+$color-green: #2ECC40;
+$color-olive: #3D9970;
+$color-lime:  #01FF70;
+
+// warm
+$color-yellow:  #FFDC00;
+$color-orange:  #FF851B;
+$color-red:     #FF4136;
+$color-fuchsia: #F012BE;
+$color-purple:  #B10DC9;
+$color-maroon:  #85144B;
+
+// gray scale
+$color-white:  #FFF;
+$color-silver: #DDD;
+$color-gray:   #AAA;
+$color-black:  #111;
+
+// base
+$color-bg: #D6AA87; // brown
+$color-nav: $color-white;
+
+
+// paddings
+$padding-default: 2rem;
+
+// media queries - breakpoints
+$media-desktop-tiny: 700px;
+$media-desktop-small: 999px;
+$media-desktop: 1000px;
+$media-desktop-large: 1200px;
+$media-desktop-height-1: 600px;
+
+// sizes
+$size-avatar: 60px;
+$size-button: 50px;
+$size-content-previous: 150px;
+$size-sidebar-right-figure: 100px;
+$size-nav: 350px;
+
+// animation timing function
+$transition-timing-default: cubic-bezier(.34,.12,.53,.15);
+$transition-duration-default: 0.25s;
+
+// border radius
+$radius-default: 6px;

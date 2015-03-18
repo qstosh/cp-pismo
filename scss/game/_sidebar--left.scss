@@ -1,0 +1,128 @@
+.sidebar--left {
+
+  &:not(.feed__list__item) {
+
+    text-align: center;
+  }
+
+  .feed-wrapper {
+
+    position: relative;
+    margin-top: 2rem;
+
+
+
+    .feed {
+
+      &__button {
+
+        cursor: pointer;
+        user-select: none;
+        opacity: 1;
+        will-change: opacity;
+        transition: opacity .2s $transition-timing-default;
+
+        &:hover {
+
+          opacity: .5;
+        }
+      }
+
+      &__bg-overlay {
+
+        position: fixed;
+        display: block;
+        /* @include size(100%, 100%); */
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        z-index: 10;
+
+        background: black;
+        opacity: 0.5;
+      }
+
+      &__list {
+
+        @include size(20rem, 22rem);
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: 3rem;
+        margin-top: -15px;
+        padding: 1rem;
+
+        background: $color-white;
+        @include border-radius;
+
+        z-index: 100;
+
+        opacity: 0;
+        transform: scale(0.5);
+        transform-origin: left 20px;
+        will-change: opacity, transform;
+        transition: opacity .2s $transition-timing-default, transform .2s $transition-timing-default;
+
+        &:before {
+
+          content: "";
+          position: absolute;
+          display: block;
+          width: 0;
+          height: 0;
+          right: 100%;
+          top: 21px;
+          border-top: 10px solid transparent;
+          border-right: 15px solid $color-white;
+          border-bottom: 10px solid transparent;
+          overflow: visible;
+        }
+
+        &--active {
+
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        &__wrapper {
+
+          height: 100%;
+          overflow-y: scroll;
+        }
+
+        &__item {
+
+          position: relative;
+          padding: 1rem;
+          text-align: left;
+
+          > img {
+
+            margin-top: 2px;
+          }
+
+          & > img,
+          &:after {
+
+            /* position: absolute; */
+          }
+
+          &:after {
+
+            content: attr(data-status);
+            position: absolute;
+            line-height: 100%;
+          }
+
+          &:nth-child(even) {
+
+            background: rgba(0,0,0,0.05);
+            /* padding-top: 1rem; */
+          }
+        }
+      }
+    }
+  }
+}

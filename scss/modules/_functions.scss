@@ -1,0 +1,187 @@
+// media queries
+@mixin media($media) {
+
+  @if $media == desktop-height-1 {
+
+    @media (max-height: $media-desktop-height-1)
+
+    { @content; }
+  }
+
+  @else if $media == desktop-small {
+
+    @media (max-width: $media-desktop-small)
+
+    { @content; }
+  }
+
+  @else if $media == desktop {
+
+    @media (min-width: $media-desktop)
+
+    { @content; }
+  }
+
+  @else if $media == desktop-large {
+
+    @media (min-width: $media-desktop-large)
+
+    { @content; }
+  }
+
+  @else if $media == ipad-retina {
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
+    and (-webkit-min-device-pixel-ratio: 2)
+
+      { @content; }
+  }
+
+  @else if $media == ipad {
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+
+    { @content; }
+  }
+}
+
+// utilities
+@mixin size($width, $height:auto) {
+
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size) {
+
+  width: $size;
+  height: $size;
+}
+
+@mixin circle($size) {
+
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+@mixin border-radius {
+
+  border-radius: $radius-default;
+}
+
+@mixin full-size-fixed {
+
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin center {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// debug
+@mixin preview-layout($y) {
+
+  @if $y == on {
+
+    body { background-color: $color-black }
+    .sidebar--left { background-color: $color-yellow }
+    .content { background-color: $color-white }
+    .sidebar--right { background-color: $color-blue }
+    .footer { background-color: $color-red }
+  }
+}
+
+@mixin show-outlines($y) {
+
+  @if $y == on {
+
+    body * {
+
+      outline: 1px solid red !important;;
+    }
+  }
+}
+
+// flex
+@mixin flex-container(
+
+    $flex-direction: row,
+    $flex-wrap: wrap,
+    $justify-content: flex-start,
+    $align-items: stretch) {
+
+  display: flex;
+  flex-flow: $flex-direction $flex-wrap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin flex-container-type($type) {
+
+  @if $type == row-center {
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @else if $type == row-center-nowrap {
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @else if $type == column-center {
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @else if $type == column-center-stretch {
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: stretch;
+  }
+}
+
+%flex-container-row {
+
+  @include flex-container-type(row-center);
+}
+
+%flex-container-row-nowrap {
+
+  @include flex-container-type(row-center-nowrap);
+}
+
+%flex-container-column {
+
+  @include flex-container-type(column-center);
+}
+
+%flex-container-column-stretch {
+
+  @include flex-container-type(column-center-stretch);
+}

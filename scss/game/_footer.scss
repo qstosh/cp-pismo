@@ -1,0 +1,9 @@
+.footer {
+
+  background-color: lighten($color-bg, 10%);
+  @extend .footer;
+
+  .clients div {
+    margin: 0 1rem;
+  }
+}
